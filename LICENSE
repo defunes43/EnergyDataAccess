@@ -1,3 +1,12 @@
+// EnergyDataAccess
+// 
+// Pour la partie GRDF / Gazpar - Copyright yukulehe <https://github.com/yukulehe> et les contributeurs du projet gazpar2mqtt (https://github.com/yukulehe/gazpar2mqtt) 
+//
+// Le code dans le répertoire EnergyDataAccess/GRDF est un dérivé sur code du projet Gazpar2MQTT, mis à disposition sous licence GNU GPL V3.
+// Cette librairie est donc en conséquence mise à disposition sous la même licence.
+
+
+
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
