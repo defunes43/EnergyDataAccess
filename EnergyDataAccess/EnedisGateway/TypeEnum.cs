@@ -12,8 +12,13 @@
     internal enum TypeEnum
     {
         /// <summary>
-        /// Gets the load curve
+        /// Gets the load curve.
         /// </summary>
         ConsumptionLoadCurve,
+
+        /// <summary>
+        /// Gets the daily consumption.
+        /// </summary>
+        DailyConsumption,
     }
 }

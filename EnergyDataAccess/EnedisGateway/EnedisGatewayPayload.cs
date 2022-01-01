@@ -27,6 +27,14 @@ namespace EnergyDataAccess.EnedisGateway
             this.End = end;
         }
 
+        public EnedisGatewayPayload(string usagePointId, TypeEnum type, DateTime start, DateTime end)
+        {
+            this.Type = type;
+            this.UsagePointId = usagePointId;
+            this.Start = start;
+            this.End = end;
+        }
+
         /// <summary>
         /// Gets the type of data requested.
         /// </summary>

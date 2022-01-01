@@ -16,5 +16,13 @@
         /// <param name="endDate">End of the requested time frame.</param>
         /// <returns>A list of measurements from the provider.</returns>
         public IEnumerable<Measure> GetHistoricalData(string usagePointId, DateTime fromDate, DateTime endDate);
+
+        /// <summary>
+        /// Gets all possible data from the provider.
+        /// </summary>
+        /// <param name="usagePointId">ID of the requested usage point.</param>
+        /// <param name="endDate">End of the requested time frame.</param>
+        /// <returns>A list of measurements from the provider.</returns>
+        public IEnumerable<Measure> GetAllData(string usagePointId, DateTime endDate);
     }
 }

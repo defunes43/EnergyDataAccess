@@ -18,9 +18,9 @@ namespace EnergyDataAccess.GRDF
         private const string LoginUrl = "https://login.monespace.grdf.fr/sofit-account-api/api/v1/auth";
         private const string WhoAmIUrl = "https://monespace.grdf.fr/api/e-connexion/users/whoami";
 
-        private ILogger logger;
-        private string login;
-        private string password;
+        private readonly ILogger logger;
+        private readonly string login;
+        private readonly string password;
 
         public GrdfEnergyRepository(ILogger logger, string login, string password)
         {
@@ -29,6 +29,7 @@ namespace EnergyDataAccess.GRDF
             this.password = password;
         }
 
+        /// <inheritdoc/>
         public IEnumerable<Measure> GetHistoricalData(string usagePointId, DateTime fromDate, DateTime endDate)
         {
             const string dailyDataQuery = "https://monespace.grdf.fr/api/e-conso/pce/consommation/informatives?dateDebut={0}&dateFin={1}&pceList[]={2}";
@@ -36,7 +37,7 @@ namespace EnergyDataAccess.GRDF
 
             HttpClient client = this.SetupClient();
 
-            this.Login(client, login, password);
+            this.Login(client, this.login, this.password);
 
             var queryResult = client.GetAsync(
                 string.Format(
@@ -45,12 +46,21 @@ namespace EnergyDataAccess.GRDF
                     endDate.ToString(grdfDateFormat),
                     usagePointId)).Result.Content.ReadAsStringAsync().Result;
 
+            this.logger.LogDebug(queryResult);
+
             JObject grdfMeasures = JsonConvert.DeserializeObject<JObject>(queryResult, new JsonSerializerSettings
             {
                 DateTimeZoneHandling = DateTimeZoneHandling.Local,
             });
             var releves = grdfMeasures[usagePointId]["releves"].Children().ToList().Select(o => o.ToObject<Response.Releve>());
             return GrdfApiHelper.GetMeasures(releves, usagePointId);
+        }
+
+        /// <inheritdoc/>
+        public IEnumerable<Measure> GetAllData(string usagePointId, DateTime endTime)
+        {
+            TimeSpan grdfMaxOffset = new TimeSpan(1000, 0, 0, 0);
+            return this.GetHistoricalData(usagePointId, endTime - grdfMaxOffset, endTime);
         }
 
         private HttpClient SetupClient()

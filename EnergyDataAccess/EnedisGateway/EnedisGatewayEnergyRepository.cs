@@ -37,13 +37,27 @@
         /// <inheritdoc/>
         public IEnumerable<Measure> GetHistoricalData(string usagePointId, DateTime fromDate, DateTime endDate)
         {
-            var payload = new EnedisGatewayPayload(usagePointId, fromDate, endDate);
-
             if (fromDate > endDate)
             {
                 throw new ArgumentOutOfRangeException("Begin date must be before end date");
             }
 
+            var payload = new EnedisGatewayPayload(usagePointId, fromDate, endDate);
+
+            return this.SendPayloadWithRetries(payload);
+        }
+
+        /// <inheritdoc/>
+        public IEnumerable<Measure> GetAllData(string usagePointId, DateTime endDate)
+        {
+            TimeSpan enedisMaxOffset = new TimeSpan(1000, 0, 0, 0);
+            var payload = new EnedisGatewayPayload(usagePointId, TypeEnum.DailyConsumption, endDate - enedisMaxOffset, endDate);
+
+            return this.SendPayloadWithRetries(payload);
+        }
+
+        private IEnumerable<Measure> SendPayloadWithRetries(EnedisGatewayPayload payload)
+        {
             HttpResponseMessage result;
 
             result = Policy<HttpResponseMessage>
