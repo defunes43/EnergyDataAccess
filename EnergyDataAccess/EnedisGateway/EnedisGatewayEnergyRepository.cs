@@ -25,6 +25,7 @@
         public EnedisGatewayEnergyRepository(ILogger logger, string apiToken)
         {
             this.httpClient = new HttpClient();
+            this.httpClient.Timeout = TimeSpan.FromMinutes(5);
             this.logger = logger;
             this.apiToken = apiToken;
         }
