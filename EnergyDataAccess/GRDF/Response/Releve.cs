@@ -2,38 +2,38 @@
 {
     using System;
 
-    internal class Releve
+    internal record Releve
     {
-            public DateTime DateDebutReleve { get; set; }
+            public DateTime DateDebutReleve { get; init; }
 
-            public DateTime DateFinReleve { get; set; }
+            public DateTime DateFinReleve { get; init; }
 
-            public string JourneeGaziere { get; set; }
+            public string JourneeGaziere { get; init; }
 
-            public int IndexDebut { get; set; }
+            public int IndexDebut { get; init; }
 
-            public int IndexFin { get; set; }
+            public int IndexFin { get; init; }
 
-            public int VolumeBrutConsomme { get; set; }
+            public int VolumeBrutConsomme { get; init; }
 
-            public int EnergieConsomme { get; set; }
+            public int EnergieConsomme { get; init; }
 
-            public object Pcs { get; set; }
+            public object Pcs { get; init; }
 
-            public object VolumeConverti { get; set; }
+            public object VolumeConverti { get; init; }
 
-            public object Pta { get; set; }
+            public object Pta { get; init; }
 
-            public string NatureReleve { get; set; }
+            public string NatureReleve { get; init; }
 
-            public string QualificationReleve { get; set; }
+            public string QualificationReleve { get; init; }
 
-            public object Status { get; set; }
+            public object Status { get; init; }
 
-            public double CoeffConversion { get; set; }
+            public double CoeffConversion { get; init; }
 
-            public object FrequenceReleve { get; set; }
+            public object FrequenceReleve { get; init; }
 
-            public object Temperature { get; set; }
+            public object Temperature { get; init; }
         }
     }

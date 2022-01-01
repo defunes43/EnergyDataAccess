@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EnergyDataAccess.GRDF
 {
-    internal class GrdfEnergyRepository
+    public class GrdfEnergyRepository
         : IEnergyRepository
     {
         private const string WelcomeUrl = "https://monespace.grdf.fr/client/particulier/accueil";
@@ -45,7 +45,10 @@ namespace EnergyDataAccess.GRDF
                     endDate.ToString(grdfDateFormat),
                     usagePointId)).Result.Content.ReadAsStringAsync().Result;
 
-            var grdfMeasures = JObject.Parse(queryResult);
+            JObject grdfMeasures = JsonConvert.DeserializeObject<JObject>(queryResult, new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Local,
+            });
             var releves = grdfMeasures[usagePointId]["releves"].Children().ToList().Select(o => o.ToObject<Response.Releve>());
             return GrdfApiHelper.GetMeasures(releves, usagePointId);
         }

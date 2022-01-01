@@ -19,12 +19,14 @@
         private const string ApiAddress = "https://enedisgateway.tech/api";
         private readonly HttpClient httpClient;
         private readonly TimeZoneInfo enedisTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+        private readonly string apiToken;
         private ILogger logger;
 
-        public EnedisGatewayEnergyRepository(ILogger logger)
+        public EnedisGatewayEnergyRepository(ILogger logger, string apiToken)
         {
             this.httpClient = new HttpClient();
             this.logger = logger;
+            this.apiToken = apiToken;
         }
 
         public EnedisGatewayEnergyRepository(HttpClient httpClient)
@@ -84,7 +86,7 @@
                 RequestUri = new Uri(ApiAddress),
                 Headers =
                 {
-                    { HttpRequestHeader.Authorization.ToString(), "s36Ib4gZGUziT9SkTjkRrxkLqP41cEKamhkf0Dw9drKK4uOSPFRTjh" },
+                    { HttpRequestHeader.Authorization.ToString(), this.apiToken },
                     { HttpRequestHeader.ContentType.ToString(), "application/json" },
                 },
                 Content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"),
