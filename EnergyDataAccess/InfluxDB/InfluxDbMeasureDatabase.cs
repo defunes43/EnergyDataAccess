@@ -60,6 +60,7 @@
                     var point = PointData.Measurement("energy")
                                         .Tag("kind", measure.Energy.ToString())
                                         .Tag("unit", measure.Unit)
+                                        .Tag("usagePointId", measure.UsagePointId)
                                         .Field("value", measure.Value)
                                         .Timestamp(measure.Timestamp, global::InfluxDB.Client.Api.Domain.WritePrecision.S);
 
