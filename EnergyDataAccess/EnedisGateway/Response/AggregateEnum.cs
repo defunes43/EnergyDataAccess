@@ -9,5 +9,10 @@
         /// Averaged data.
         /// </summary>
         AVERAGE,
+
+        /// <summary>
+        /// Sum over a period.
+        /// </summary>
+        SUM,
     }
 }

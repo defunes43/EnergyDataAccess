@@ -9,5 +9,10 @@
         /// 30 minutes interval.
         /// </summary>
         PT30M,
+
+        /// <summary>
+        /// One day interval.
+        /// </summary>
+        P1D,
     }
 }
