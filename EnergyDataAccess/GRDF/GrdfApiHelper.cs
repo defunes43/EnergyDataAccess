@@ -10,7 +10,7 @@
 
         internal static IEnumerable<Measure> GetMeasures(IEnumerable<Response.Releve> releves, string pceId)
         {
-            return releves.Select(m => new Measure { Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.DateDebutReleve), Value = m.EnergieConsomme, Energy = EnergyEnum.GAS, UsagePointId = pceId });
+            return releves.Select(m => new Measure { Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.DateDebutReleve), Value = m.EnergieConsomme, Energy = EnergyEnum.GAS, UsagePointId = pceId, Aggregate = AggregateTimeEnum.DAILY });
         }
     }
 }

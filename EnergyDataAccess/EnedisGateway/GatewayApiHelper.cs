@@ -30,7 +30,17 @@
         /// <returns>A set of agnostic measures.</returns>
         internal static IEnumerable<Measure> GetMeasures(MeterReading meterReading, TimeZoneInfo timeZoneInfo)
         {
-            return meterReading.IntervalReadings.Select(m => new Measure { Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.Date, timeZoneInfo), Value = m.Value, Energy = EnergyEnum.ELECTRICITY, UsagePointId = meterReading.UsagePointId });
+            return meterReading.IntervalReadings.Select(m => new Measure { Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.Date, timeZoneInfo), Value = m.Value, Energy = EnergyEnum.ELECTRICITY, UsagePointId = meterReading.UsagePointId, Aggregate = GetAggregateFromInterval(m.IntervalLength) });
+        }
+
+        private static AggregateTimeEnum GetAggregateFromInterval(IntervalLengthEnum interval)
+        {
+            return interval switch
+            {
+                IntervalLengthEnum.PT30M => AggregateTimeEnum.HALF_HOUR,
+                IntervalLengthEnum.P1D => AggregateTimeEnum.DAILY,
+                _ => throw new Exception("impossible"),
+            };
         }
     }
 }
