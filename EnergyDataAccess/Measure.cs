@@ -32,6 +32,6 @@
         /// </summary>
         public EnergyEnum Energy { get; init; }
 
-        public AggregateTimeEnum Aggregate { get; init }
+        public AggregateTimeEnum Aggregate { get; init; }
     }
 }
