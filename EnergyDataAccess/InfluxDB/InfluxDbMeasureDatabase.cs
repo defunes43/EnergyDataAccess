@@ -61,6 +61,7 @@
                                         .Tag("kind", measure.Energy.ToString())
                                         .Tag("unit", measure.Unit)
                                         .Tag("usagePointId", measure.UsagePointId)
+                                        .Tag("aggregate", measure.Aggregate.ToString())
                                         .Field("value", measure.Value)
                                         .Timestamp(measure.Timestamp, global::InfluxDB.Client.Api.Domain.WritePrecision.S);
 
