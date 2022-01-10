@@ -1,10 +1,13 @@
 ﻿namespace EnergyDataAccess.EnedisGateway.Response
 {
     using System;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
     /// Represents a power reading over an interval..
     /// </summary>
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     internal record IntervalReading
     {
         /// <summary>
@@ -25,6 +28,6 @@
         /// <summary>
         /// Gets the type of measure returned.
         /// </summary>
-        public QualityEnum MeasureType { get; init; }
+        public MeasureTypeEnum MeasureType { get; init; }
     }
 }

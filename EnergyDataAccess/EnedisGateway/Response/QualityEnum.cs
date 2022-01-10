@@ -6,7 +6,7 @@
     internal enum QualityEnum
     {
         /// <summary>
-        /// Raw data.
+        /// Brut - Raw data.
         /// </summary>
         BRUT,
     }

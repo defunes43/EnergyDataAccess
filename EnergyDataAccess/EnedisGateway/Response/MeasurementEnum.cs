@@ -9,5 +9,10 @@
         /// Power reading.
         /// </summary>
         POWER,
+
+        /// <summary>
+        /// Power reading.
+        /// </summary>
+        ENERGY,
     }
 }

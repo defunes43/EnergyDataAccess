@@ -6,6 +6,11 @@
     internal enum IntervalLengthEnum
     {
         /// <summary>
+        /// No interval defined.
+        /// </summary>
+        UNDEFINED,
+
+        /// <summary>
         /// 30 minutes interval.
         /// </summary>
         PT30M,

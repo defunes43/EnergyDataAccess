@@ -1,4 +1,6 @@
-﻿namespace EnergyDataAccess.EnedisGateway.Response
+﻿using Newtonsoft.Json;
+
+namespace EnergyDataAccess.EnedisGateway.Response
 {
     /// <summary>
     /// Represents a reading type offered by the Enedis API.
@@ -19,5 +21,8 @@
         /// Gets the way the data is aggregated over the intervals.
         /// </summary>
         public AggregateEnum Aggregate { get; init; }
+
+        [JsonProperty("measuring_period")]
+        public IntervalLengthEnum AggregateTime { get; init; }
     }
 }

@@ -30,9 +30,10 @@
             this.apiToken = apiToken;
         }
 
-        public EnedisGatewayEnergyRepository(HttpClient httpClient)
+        public EnedisGatewayEnergyRepository(HttpClient httpClient, string apiToken)
         {
             this.httpClient = httpClient;
+            this.apiToken = apiToken;
         }
 
         /// <inheritdoc/>
@@ -75,7 +76,7 @@
                 {
                     HttpResponseMessage result;
                     result = this.SendQueryFromPayloadAsync(payload);
-                    this.logger.LogDebug(result.Content.ReadAsStringAsync().Result);
+                    this.logger.LogDebug(result?.Content?.ReadAsStringAsync()?.Result);
                     this.logger.LogDebug(JsonConvert.SerializeObject(payload));
                     result.EnsureSuccessStatusCode();
                     return result;

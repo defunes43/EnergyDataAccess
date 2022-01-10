@@ -15,7 +15,7 @@
         /// <summary>
         /// Gets the unit of the measurement.
         /// </summary>
-        public string Unit { get; init; }
+        public string? Unit { get; init; }
 
         /// <summary>
         /// Gets the timestamp of the measurement.
@@ -32,6 +32,6 @@
         /// </summary>
         public EnergyEnum Energy { get; init; }
 
-        public AggregateTimeEnum Aggregate { get; init; }
+        public AggregateTimeEnum? Aggregate { get; init; }
     }
 }
