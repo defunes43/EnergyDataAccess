@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Text;
@@ -46,7 +47,13 @@
 
             var payload = new EnedisGatewayPayload(usagePointId, fromDate, endDate);
 
-            return this.SendPayloadWithRetries(payload);
+            var halfHourData = this.SendPayloadWithRetries(payload);
+
+            var payloadDaily = new EnedisGatewayPayload(usagePointId, TypeEnum.DailyConsumption, fromDate, endDate);
+
+            var dailyData = this.SendPayloadWithRetries(payloadDaily);
+
+            return halfHourData.Concat(dailyData);
         }
 
         /// <inheritdoc/>
