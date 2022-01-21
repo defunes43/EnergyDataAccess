@@ -30,10 +30,11 @@
         /// <returns>A set of agnostic measures.</returns>
         internal static IEnumerable<Measure> GetMeasures(MeterReading meterReading, TimeZoneInfo timeZoneInfo)
         {
-            return meterReading.IntervalReadings.Select(m => new Measure { 
+            return meterReading.IntervalReadings.Select(m => new Measure
+            { 
                 Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.Date, timeZoneInfo),
                 Value = m.Value,
-                Energy = EnergyEnum.ELECTRICITY,
+                Kind = EnergyDataAccess.MeasurementEnum.ELECTRICITY,
                 UsagePointId = meterReading.UsagePointId,
                 Aggregate = GetAggregateFromInterval(
                     m.IntervalLength == IntervalLengthEnum.UNDEFINED ?

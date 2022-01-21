@@ -30,7 +30,7 @@
         /// <summary>
         /// Gets the energy which usage is measured.
         /// </summary>
-        public EnergyEnum Energy { get; init; }
+        public MeasurementEnum Kind { get; init; }
 
         public AggregateTimeEnum? Aggregate { get; init; }
     }

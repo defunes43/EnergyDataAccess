@@ -12,7 +12,7 @@
         {
             return releves.Select(m => new Measure { 
                 Timestamp = TimeZoneInfo.ConvertTimeToUtc(m.DateDebutReleve),
-                Value = m.EnergieConsomme, Energy = EnergyEnum.GAS,
+                Value = m.EnergieConsomme, Kind = MeasurementEnum.GAS,
                 UsagePointId = pceId,
                 Aggregate = AggregateTimeEnum.DAILY });
         }

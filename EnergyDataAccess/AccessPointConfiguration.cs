@@ -4,6 +4,6 @@
     {
         public string AccessPointId { get; init; }
 
-        public EnergyDataAccess.EnergyEnum Energy { get; init; }
+        public EnergyDataAccess.MeasurementEnum Energy { get; init; }
     }
 }

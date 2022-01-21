@@ -58,7 +58,7 @@
                 foreach(Measure measure in measures)
                 {
                     var point = PointData.Measurement("energy")
-                                        .Tag("kind", measure.Energy.ToString())
+                                        .Tag("kind", measure.Kind.ToString())
                                         .Tag("unit", measure.Unit)
                                         .Tag("usagePointId", measure.UsagePointId)
                                         .Tag("aggregate", measure.Aggregate.ToString())

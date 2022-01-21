@@ -3,7 +3,7 @@
     /// <summary>
     /// Enumerates the different kinds of energy measured.
     /// </summary>
-    public enum EnergyEnum
+    public enum MeasurementEnum
     {
         /// <summary>
         /// Gas.
@@ -14,5 +14,10 @@
         /// Electricity.
         /// </summary>
         ELECTRICITY,
+
+        /// <summary>
+        /// Temperature.
+        /// </summary>
+        TEMPERATURE,
     }
 }
